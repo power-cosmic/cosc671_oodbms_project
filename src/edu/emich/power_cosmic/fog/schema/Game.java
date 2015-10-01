@@ -1,5 +1,6 @@
 package edu.emich.power_cosmic.fog.schema;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -38,8 +39,8 @@ public class Game {
 		this.description = description;
 	}
 
-	public Set<String> getGenres() {
-		return genres;
+	public Iterator<String> getGenres() {
+		return genres.iterator();
 	}
 
 	public void setGenres(Set<String> genres) {

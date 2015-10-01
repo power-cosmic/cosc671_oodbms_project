@@ -2,6 +2,7 @@ package edu.emich.power_cosmic.fog.schema;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -51,16 +52,25 @@ public class Player extends FogUser {
         this.billingInformation = billingInformation;
     }
 
-    public Set<Game> getGames() {
-        return games;
+    public Iterator<Game> getGames() {
+        return games.iterator();
     }
 
     public boolean addGame(Game game) {
         return games.add(game);
     }
+    
+    public boolean giveGame(Game game, Player otherPlayer) {
+    	if (games.contains(game)) {
+    		this.games.remove(game);
+    		otherPlayer.addGame(game);
+    		return true;
+    	}
+    	return false;
+    }
 
-    public Set<Player> getFriends() {
-        return friends;
+    public Iterator<Player> getFriends() {
+        return friends.iterator();
     }
 
     public boolean addFriends(Player friend) {
@@ -71,8 +81,8 @@ public class Player extends FogUser {
         return friends.remove(exFriend);
     }
     
-    public Set<Game> getWishlist() {
-        return wishlist;
+    public Iterator<Game> getWishlist() {
+        return wishlist.iterator();
     }
     
     public boolean addGameToWishlist(Game game) {
@@ -83,8 +93,8 @@ public class Player extends FogUser {
         return wishlist.remove(game);
     }
 
-    public List<TrophyCard> getTrophyCards() {
-        return trophyCards;
+    public Iterator<TrophyCard> getTrophyCards() {
+        return trophyCards.iterator();
     }
 
     public boolean addTrophyCard(TrophyCard card) {
