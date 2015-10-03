@@ -11,9 +11,11 @@ import com.db4o.query.Predicate;
 import edu.emich.power_cosmic.fog.commands.Command;
 import edu.emich.power_cosmic.fog.commands.UserLister;
 import edu.emich.power_cosmic.fog.commands.UserSignup;
+import edu.emich.power_cosmic.fog.menus.AdministratorMenu;
 import edu.emich.power_cosmic.fog.menus.Menu;
 import edu.emich.power_cosmic.fog.menus.MenuNavigator;
 import edu.emich.power_cosmic.fog.menus.UserMenu;
+import edu.emich.power_cosmic.fog.schema.Administrator;
 import edu.emich.power_cosmic.fog.schema.FogUser;
 import edu.emich.power_cosmic.fog.schema.Player;
 
@@ -47,13 +49,15 @@ public class DatabaseProject extends Menu {
 				// login command should have altered user
 				if (mainMenu.user instanceof Player) {
 					menuStack.push(new UserMenu(mainMenu.user));
+				} else if (mainMenu.user instanceof Administrator) {
+					menuStack.push(new AdministratorMenu(mainMenu.user));
 				}
 				break;
 			case BACK:
 				menuStack.pop();
 				if (menuStack.isEmpty()) {
 					running = false;
-				} else if (menuStack.size() == 1){
+				} else if (menuStack.size() == 1) {
 					mainMenu.user = null;
 				}
 				break;

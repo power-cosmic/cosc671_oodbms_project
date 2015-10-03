@@ -61,8 +61,9 @@ public abstract class Menu {
 		public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
 			
 			for (Command command: commands) {
-				System.out.println(command.getName() + ": " 
-						+ command.getDescription());
+				System.out.printf("%-12s : %s\n",
+						command.getName(),
+						command.getDescription());
 			}
 			return MenuNavigator.CONTINUE;
 		}

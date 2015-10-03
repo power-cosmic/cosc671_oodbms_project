@@ -29,7 +29,8 @@ public class GameLister extends Command {
 		});
 		
 		for (Game game: games) {
-			System.out.println(game.getTitle());
+			System.out.println(game.getTitle()
+					+ ": " + game.getDescription());
 		}
 		
 		return MenuNavigator.CONTINUE;

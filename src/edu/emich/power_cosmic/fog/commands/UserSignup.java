@@ -97,6 +97,7 @@ public class UserSignup extends Command {
 		
 		System.out.print("employee id: ");
 		user.setEmployeeId(keyboard.nextLong());
+		keyboard.nextLine();
 		
 		return user;
 	}
