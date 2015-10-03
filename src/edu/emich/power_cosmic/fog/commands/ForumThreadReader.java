@@ -26,6 +26,7 @@ public class ForumThreadReader extends Command {
 		forumTitle = keyboard.nextLine();
 		
 		List<ForumThread> threads = db.query(new Predicate<ForumThread>() {
+			private static final long serialVersionUID = 4324245234217893997L;
 
 			@Override
 			public boolean match(ForumThread thread) {
