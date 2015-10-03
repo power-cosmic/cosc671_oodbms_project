@@ -6,8 +6,8 @@ import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 
 import edu.emich.power_cosmic.fog.commands.Command;
-import edu.emich.power_cosmic.fog.commands.MenuNavigator;
 import edu.emich.power_cosmic.fog.menus.Menu;
+import edu.emich.power_cosmic.fog.menus.MenuNavigator;
 import edu.emich.power_cosmic.fog.queries.UserLister;
 import edu.emich.power_cosmic.fog.queries.UserSignin;
 import edu.emich.power_cosmic.fog.queries.UserSignup;

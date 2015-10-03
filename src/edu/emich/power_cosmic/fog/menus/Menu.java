@@ -7,7 +7,6 @@ import java.util.Scanner;
 import com.db4o.ObjectContainer;
 
 import edu.emich.power_cosmic.fog.commands.Command;
-import edu.emich.power_cosmic.fog.commands.MenuNavigator;
 
 public abstract class Menu {
 

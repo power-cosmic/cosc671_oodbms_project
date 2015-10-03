@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import com.db4o.ObjectContainer;
 
+import edu.emich.power_cosmic.fog.menus.MenuNavigator;
+
 public abstract class Command {
 	private String name, description;
 	
