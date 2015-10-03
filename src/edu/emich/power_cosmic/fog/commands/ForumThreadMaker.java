@@ -14,7 +14,7 @@ public class ForumThreadMaker extends Command {
 	private FogUser user;
 	
 	public ForumThreadMaker(FogUser user) {
-		super("start thread", "Start a new thread");
+		super("start", "Start a new thread");
 		this.user = user;
 	}
 

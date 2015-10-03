@@ -12,7 +12,7 @@ import edu.emich.power_cosmic.fog.schema.ForumThread;
 public class ForumThreadLister extends Command {
 
 	public ForumThreadLister() {
-		super("forum threads", "Show forum threads");
+		super("list", "Show forum threads");
 	}
 
 	@Override

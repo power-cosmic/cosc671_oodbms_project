@@ -45,10 +45,12 @@ public class PostPoster extends Command {
 		if (threads.isEmpty()) {
 			System.out.println("Forum thread not found");
 		} else {
+			ForumThread thread = threads.get(0);
 			Post post = new Post(user, content);
-			threads.get(0).addPost(post);
+			post.setForumThread(thread);
+			thread.addPost(post);
 			
-			db.store(threads.get(0));
+			db.store(thread);
 		}
 
 		return MenuNavigator.CONTINUE;

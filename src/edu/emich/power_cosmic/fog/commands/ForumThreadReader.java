@@ -15,7 +15,7 @@ import edu.emich.power_cosmic.fog.schema.Post;
 public class ForumThreadReader extends Command {
 
 	public ForumThreadReader() {
-		super("read-forum", "Read the posts to a thread");
+		super("read", "Read the posts to a thread");
 	}
 
 	@Override

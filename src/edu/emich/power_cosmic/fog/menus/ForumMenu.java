@@ -4,6 +4,7 @@ import edu.emich.power_cosmic.fog.commands.Back;
 import edu.emich.power_cosmic.fog.commands.ForumThreadLister;
 import edu.emich.power_cosmic.fog.commands.ForumThreadMaker;
 import edu.emich.power_cosmic.fog.commands.ForumThreadReader;
+import edu.emich.power_cosmic.fog.commands.MyPostLister;
 import edu.emich.power_cosmic.fog.commands.PostPoster;
 import edu.emich.power_cosmic.fog.schema.FogUser;
 
@@ -16,6 +17,7 @@ public class ForumMenu extends Menu {
 		addCommand(new ForumThreadReader());
 		addCommand(new ForumThreadMaker(user));
 		addCommand(new PostPoster(user));
+		addCommand(new MyPostLister(user));
 		addCommand(new Back());
 	}
 
