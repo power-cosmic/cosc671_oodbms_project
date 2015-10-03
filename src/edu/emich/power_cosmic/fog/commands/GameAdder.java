@@ -1,15 +1,20 @@
-package edu.emich.power_cosmic.fog.queries;
+package edu.emich.power_cosmic.fog.commands;
 
 import java.util.Scanner;
 
 import com.db4o.ObjectContainer;
 
+import edu.emich.power_cosmic.fog.menus.MenuNavigator;
 import edu.emich.power_cosmic.fog.schema.Game;
 
-public class GameAdder implements FogQuery {
+public class GameAdder extends Command {
 
+	public GameAdder() {
+		super("add game", "Add a game");
+	}
+	
 	@Override
-	public void runQuery(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
 		
 		System.out.print("Enter title: ");
 		String title = keyboard.nextLine();
@@ -21,5 +26,7 @@ public class GameAdder implements FogQuery {
 		game.setDescription(description);
 		
 		db.store(game);
+		
+		return MenuNavigator.CONTINUE;
 	}
 }

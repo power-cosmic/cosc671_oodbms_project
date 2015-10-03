@@ -1,4 +1,4 @@
-package edu.emich.power_cosmic.fog.queries;
+package edu.emich.power_cosmic.fog.commands;
 
 import java.util.List;
 import java.util.Scanner;
@@ -7,19 +7,24 @@ import com.db4o.ObjectContainer;
 import com.db4o.query.Predicate;
 
 import edu.emich.power_cosmic.fog.application.OutputConstants;
+import edu.emich.power_cosmic.fog.menus.MenuNavigator;
 import edu.emich.power_cosmic.fog.schema.Administrator;
 import edu.emich.power_cosmic.fog.schema.Developer;
 import edu.emich.power_cosmic.fog.schema.FogUser;
 import edu.emich.power_cosmic.fog.schema.Player;
 
-public class UserSignup implements FogQuery {
+public class UserSignup extends Command {
 
 	private static final String ADMIN = "admin";
 	private static final String DEVELOPER = "developer";
 	private static final String PLAYER = "player";
 	
+	public UserSignup() {
+		super("signup", "Sign up a new user");
+	}
+	
 	@Override
-	public void runQuery(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
 		System.out.printf("Select user type (%s, %s, %s):\n",
 				ADMIN, DEVELOPER, PLAYER);
 		
@@ -42,9 +47,14 @@ public class UserSignup implements FogQuery {
 			break;
 		}
 		
-		if (user != null) {
+		if (user == null) {
+			System.out.println("Username already taken");
+		} else {
 			db.store(user);
+			System.out.println("User added");
 		}
+
+		return MenuNavigator.CONTINUE;
 	}
 	
 	private void addFogUserFields(FogUser user, Scanner keyboard, ObjectContainer db) {

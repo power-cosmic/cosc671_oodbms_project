@@ -1,16 +1,17 @@
 package edu.emich.power_cosmic.fog.application;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
+import com.db4o.query.Predicate;
 
 import edu.emich.power_cosmic.fog.commands.Command;
+import edu.emich.power_cosmic.fog.commands.UserLister;
+import edu.emich.power_cosmic.fog.commands.UserSignup;
 import edu.emich.power_cosmic.fog.menus.Menu;
 import edu.emich.power_cosmic.fog.menus.MenuNavigator;
-import edu.emich.power_cosmic.fog.queries.UserLister;
-import edu.emich.power_cosmic.fog.queries.UserSignin;
-import edu.emich.power_cosmic.fog.queries.UserSignup;
 import edu.emich.power_cosmic.fog.schema.FogUser;
 
 public class DatabaseProject extends Menu {
@@ -44,6 +45,8 @@ public class DatabaseProject extends Menu {
 			case EXIT:
 				running = false;
 				break;
+			default:
+				break;
 			}
 		}
 		db.close();
@@ -51,30 +54,10 @@ public class DatabaseProject extends Menu {
 	
 	public DatabaseProject() {
 		super();
-		addCommand(new SignUp());
-		addCommand(new Login());
-		addCommand(new Command("ls", "List users") {
-
-			@Override
-			public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
-				new UserLister().runQuery(keyboard, db);
-				return MenuNavigator.CONTINUE;
-			}
-		});
-	}
-
-	private class SignUp extends Command {
 		
-		private SignUp() {
-			super("signup", "sign up as a user");
-		}
-
-		@Override
-		public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
-			UserSignup query = new UserSignup();
-			query.runQuery(keyboard, db);
-			return MenuNavigator.CONTINUE;
-		}
+		addCommand(new Login());
+		addCommand(new UserSignup());
+		addCommand(new UserLister());
 	}
 	
 	private class Login extends Command {
@@ -85,14 +68,28 @@ public class DatabaseProject extends Menu {
 
 		@Override
 		public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
-			UserSignin query = new UserSignin();
-			query.runQuery(keyboard, db);
+			String username, password;
 			
-			if (query.getUser() == null) {
+			System.out.print("username: ");
+			username = keyboard.nextLine();
+			
+			System.out.print("password: ");
+			password = keyboard.nextLine();
+
+			List<FogUser> users = db.query(new Predicate<FogUser>() {
+				private static final long serialVersionUID = 7591544779191591305L;
+
+				@Override
+				public boolean match(FogUser user) {
+					return user.getUsername().equals(username)
+							&& user.getPassword().equals(password);
+				}
+			});
+			if (users.isEmpty()) {
 				System.out.println("Invalid credentials");
 				return MenuNavigator.CONTINUE;
 			} else {
-				user = query.getUser();
+				user = users.get(0);
 				System.out.println("Login successful");
 				return MenuNavigator.LOGIN;
 			}
