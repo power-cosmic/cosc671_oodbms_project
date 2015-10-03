@@ -36,7 +36,7 @@ public abstract class Menu {
 		
 		// if we got here the user didn't enter a real command
 		System.out.println("Invalid command; type 'help' for help");
-		return MenuNavigator.CONTINUE;
+		return new MenuNavigator(MenuNavigator.Status.CONTINUE);
 	}
 	
 	private class Exit extends Command {
@@ -47,7 +47,7 @@ public abstract class Menu {
 		
 		@Override
 		public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
-			return MenuNavigator.EXIT;
+			return new MenuNavigator(MenuNavigator.Status.EXIT);
 		}	
 	}
 	
@@ -65,7 +65,7 @@ public abstract class Menu {
 						command.getName(),
 						command.getDescription());
 			}
-			return MenuNavigator.CONTINUE;
+			return new MenuNavigator(MenuNavigator.Status.CONTINUE);
 		}
 	}
 

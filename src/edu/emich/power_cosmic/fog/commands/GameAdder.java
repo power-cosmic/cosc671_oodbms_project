@@ -28,6 +28,7 @@ public class GameAdder extends Command {
 		Game game = new Game();
 		game.setTitle(title);
 		game.setDescription(description);
+		game.setDeveloper(developer);
 		
 		db.store(game);
 		

@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
+import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.query.Predicate;
 
 import edu.emich.power_cosmic.fog.commands.Command;
@@ -15,10 +16,11 @@ import edu.emich.power_cosmic.fog.menus.AdministratorMenu;
 import edu.emich.power_cosmic.fog.menus.DeveloperMenu;
 import edu.emich.power_cosmic.fog.menus.Menu;
 import edu.emich.power_cosmic.fog.menus.MenuNavigator;
-import edu.emich.power_cosmic.fog.menus.UserMenu;
+import edu.emich.power_cosmic.fog.menus.PlayerMenu;
 import edu.emich.power_cosmic.fog.schema.Administrator;
 import edu.emich.power_cosmic.fog.schema.Developer;
 import edu.emich.power_cosmic.fog.schema.FogUser;
+import edu.emich.power_cosmic.fog.schema.ForumThread;
 import edu.emich.power_cosmic.fog.schema.Player;
 
 public class DatabaseProject extends Menu {
@@ -28,7 +30,9 @@ public class DatabaseProject extends Menu {
 	private FogUser user;
 	
 	public static void main(String[] args) {
-		ObjectContainer db = Db4oEmbedded.openFile(FILENAME);
+		EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+		config.common().objectClass(ForumThread.class).cascadeOnUpdate(true);
+		ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
 		Scanner keyboard = new Scanner(System.in);
 		
 		DatabaseProject mainMenu = new DatabaseProject();
@@ -40,23 +44,16 @@ public class DatabaseProject extends Menu {
 		System.out.println(OutputConstants.SEPARATOR);
 		
 		boolean running = true;
-		MenuNavigator menuStatus = MenuNavigator.CONTINUE;
+		MenuNavigator menuStatus = null;
+		
 		while(running) {
 			System.out.print(OutputConstants.PROMPT);
 			String command = keyboard.nextLine();
 			menuStatus = menuStack.peek().doCommand(command, keyboard, db);
 			
-			switch(menuStatus) {
-			case LOGIN:
-				// login command should have altered user
-				if (mainMenu.user instanceof Player) {
-					menuStack.push(new UserMenu(mainMenu.user));
-				} else if (mainMenu.user instanceof Administrator) {
-					menuStack.push(new AdministratorMenu(mainMenu.user));
-				} else if (mainMenu.user instanceof Developer) {
-					menuStack.push(new DeveloperMenu(
-							(Developer)mainMenu.user));
-				}
+			switch(menuStatus.getStatus()) {
+			case CHANGE:
+				menuStack.push(menuStatus.getMenu());
 				break;
 			case BACK:
 				menuStack.pop();
@@ -80,6 +77,7 @@ public class DatabaseProject extends Menu {
 				break;
 			}
 		}
+		db.commit();
 		db.close();
 	}
 	
@@ -118,11 +116,23 @@ public class DatabaseProject extends Menu {
 			});
 			if (users.isEmpty()) {
 				System.out.println("Invalid credentials");
-				return MenuNavigator.CONTINUE;
+				return new MenuNavigator(MenuNavigator.Status.CONTINUE);
 			} else {
 				user = users.get(0);
+				MenuNavigator navigator = null;
+				if (user instanceof Player) {
+					navigator = new MenuNavigator(
+							new PlayerMenu((Player)user));
+				} else if (user instanceof Developer) {
+					navigator = new MenuNavigator(
+							new DeveloperMenu((Developer)user));
+				} else if (user instanceof Administrator) {
+					navigator = new MenuNavigator(
+							new AdministratorMenu((Administrator)user));
+				}
+				
 				System.out.println("Login successful");
-				return MenuNavigator.LOGIN;
+				return navigator;
 			}
 		}
 	}
