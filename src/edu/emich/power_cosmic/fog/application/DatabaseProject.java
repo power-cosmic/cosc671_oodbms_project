@@ -86,7 +86,6 @@ public class DatabaseProject extends Menu {
 		
 		addCommand(new Login());
 		addCommand(new UserSignup());
-		addCommand(new UserLister());
 	}
 	
 	private class Login extends Command {

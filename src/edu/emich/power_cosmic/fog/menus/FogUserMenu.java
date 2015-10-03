@@ -1,10 +1,11 @@
 package edu.emich.power_cosmic.fog.menus;
 
-import edu.emich.power_cosmic.fog.commands.ForumThreadLister;
-import edu.emich.power_cosmic.fog.commands.ForumThreadMaker;
-import edu.emich.power_cosmic.fog.commands.ForumThreadReader;
+import java.util.Scanner;
+
+import com.db4o.ObjectContainer;
+
+import edu.emich.power_cosmic.fog.commands.Command;
 import edu.emich.power_cosmic.fog.commands.GameLister;
-import edu.emich.power_cosmic.fog.commands.PostPoster;
 import edu.emich.power_cosmic.fog.commands.UserLogout;
 import edu.emich.power_cosmic.fog.schema.FogUser;
 
@@ -14,11 +15,24 @@ public class FogUserMenu extends Menu {
 		super(user);
 		
 		addCommand(new GameLister());
-		addCommand(new ForumThreadLister());
-		addCommand(new ForumThreadReader());
-		addCommand(new ForumThreadMaker(user));
-		addCommand(new PostPoster(user));
+		addCommand(new ForumMenuGoer(user));
 		addCommand(new UserLogout());
+	}
+	
+	private class ForumMenuGoer extends Command {
+
+		private FogUser user;
+		
+		public ForumMenuGoer(FogUser user) {
+			super("forum", "Go to forum menu");
+			this.user = user;
+		}
+
+		@Override
+		public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+			return new MenuNavigator(new ForumMenu(user));
+		}
+		
 	}
 
 }
