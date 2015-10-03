@@ -1,4 +1,4 @@
-package edu.emich.power_cosmic.fog.application;
+package edu.emich.power_cosmic.fog.queries;
 
 import java.util.List;
 import java.util.Scanner;
@@ -9,11 +9,6 @@ import com.db4o.query.Predicate;
 import edu.emich.power_cosmic.fog.schema.Game;
 
 public class GameLister implements FogQuery {
-
-	@Override
-	public String getName() {
-		return "List games";
-	}
 
 	@Override
 	public void runQuery(Scanner keyboard, ObjectContainer db) {
@@ -30,7 +25,5 @@ public class GameLister implements FogQuery {
 		for (Game game: games) {
 			System.out.println(game.getTitle());
 		}
-		
 	}
-
 }

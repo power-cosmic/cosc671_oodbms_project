@@ -4,6 +4,10 @@ public class Developer extends FogUser {
 	
 	private String name;
 	
+	public Developer() {
+		this(null, null);
+	}
+	
 	public Developer(String username, String password) {
 		super(username, password);
 	}

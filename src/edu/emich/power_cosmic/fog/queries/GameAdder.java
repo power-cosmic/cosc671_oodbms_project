@@ -1,4 +1,4 @@
-package edu.emich.power_cosmic.fog.application;
+package edu.emich.power_cosmic.fog.queries;
 
 import java.util.Scanner;
 
@@ -22,10 +22,4 @@ public class GameAdder implements FogQuery {
 		
 		db.store(game);
 	}
-
-	@Override
-	public String getName() {
-		return "Add games";
-	}
-
 }
