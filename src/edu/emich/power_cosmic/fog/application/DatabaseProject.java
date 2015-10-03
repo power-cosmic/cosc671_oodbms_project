@@ -12,10 +12,12 @@ import edu.emich.power_cosmic.fog.commands.Command;
 import edu.emich.power_cosmic.fog.commands.UserLister;
 import edu.emich.power_cosmic.fog.commands.UserSignup;
 import edu.emich.power_cosmic.fog.menus.AdministratorMenu;
+import edu.emich.power_cosmic.fog.menus.DeveloperMenu;
 import edu.emich.power_cosmic.fog.menus.Menu;
 import edu.emich.power_cosmic.fog.menus.MenuNavigator;
 import edu.emich.power_cosmic.fog.menus.UserMenu;
 import edu.emich.power_cosmic.fog.schema.Administrator;
+import edu.emich.power_cosmic.fog.schema.Developer;
 import edu.emich.power_cosmic.fog.schema.FogUser;
 import edu.emich.power_cosmic.fog.schema.Player;
 
@@ -51,6 +53,9 @@ public class DatabaseProject extends Menu {
 					menuStack.push(new UserMenu(mainMenu.user));
 				} else if (mainMenu.user instanceof Administrator) {
 					menuStack.push(new AdministratorMenu(mainMenu.user));
+				} else if (mainMenu.user instanceof Developer) {
+					menuStack.push(new DeveloperMenu(
+							(Developer)mainMenu.user));
 				}
 				break;
 			case BACK:

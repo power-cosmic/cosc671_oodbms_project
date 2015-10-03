@@ -5,12 +5,16 @@ import java.util.Scanner;
 import com.db4o.ObjectContainer;
 
 import edu.emich.power_cosmic.fog.menus.MenuNavigator;
+import edu.emich.power_cosmic.fog.schema.Developer;
 import edu.emich.power_cosmic.fog.schema.Game;
 
 public class GameAdder extends Command {
 
-	public GameAdder() {
+	private Developer developer;
+	
+	public GameAdder(Developer developer) {
 		super("add game", "Add a game");
+		this.developer = developer;
 	}
 	
 	@Override
