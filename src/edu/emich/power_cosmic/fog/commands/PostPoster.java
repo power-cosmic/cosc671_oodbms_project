@@ -46,7 +46,6 @@ public class PostPoster extends Command {
 			Post post = new Post(user, content);
 			threads.get(0).addPost(post);
 			
-			db.store(post);
 			db.store(threads.get(0));
 		}
 
