@@ -13,7 +13,10 @@ public class Back extends Command {
 	}
 
 	@Override
-	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
+		
 		return MenuNavigator.BACK;
 	}
 

@@ -14,7 +14,9 @@ public abstract class Command {
 		this.description = description;
 	}
 
-	public abstract MenuNavigator doCommand(Scanner keyboard, ObjectContainer db);
+	public abstract MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args);
 	
 	public String getName() {
 		return name;

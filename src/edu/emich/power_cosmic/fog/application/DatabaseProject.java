@@ -31,7 +31,10 @@ public class DatabaseProject extends Menu {
 	public static void main(String[] args) {
 		EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
 		config.common().objectClass(ForumThread.class).cascadeOnUpdate(true);
+		config.common().objectClass(FogUser.class).cascadeOnUpdate(true);
+		
 		ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
+		
 		Scanner keyboard = new Scanner(System.in);
 		
 		DatabaseProject mainMenu = new DatabaseProject();
@@ -47,8 +50,10 @@ public class DatabaseProject extends Menu {
 		
 		while(running) {
 			System.out.print(OutputConstants.PROMPT);
-			String command = keyboard.nextLine();
-			menuStatus = menuStack.peek().doCommand(command, keyboard, db);
+			String command = keyboard.next();
+			String line = keyboard.nextLine().trim();
+			String[] arguments = line.length() > 0? line.split("\\s+") : new String[0];
+			menuStatus = menuStack.peek().doCommand(command, keyboard, db, arguments);
 			
 			switch(menuStatus.getStatus()) {
 			case CHANGE:
@@ -94,14 +99,25 @@ public class DatabaseProject extends Menu {
 		}
 
 		@Override
-		public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+		public MenuNavigator doCommand(Scanner keyboard, 
+				ObjectContainer db,
+				String[] args) {
+			
 			String username, password;
 			
-			System.out.print("username: ");
-			username = keyboard.nextLine();
+			if (args.length > 0) {
+				username = args[0];
+			} else {
+				System.out.print("username: ");
+				username = keyboard.nextLine();
+			}
 			
-			System.out.print("password: ");
-			password = keyboard.nextLine();
+			if (args.length > 1) {
+				password = args[1];
+			} else {
+				System.out.print("password: ");
+				password = keyboard.nextLine();
+			}
 
 			List<FogUser> users = db.query(new Predicate<FogUser>() {
 				private static final long serialVersionUID = 7591544779191591305L;
@@ -112,6 +128,7 @@ public class DatabaseProject extends Menu {
 							&& user.getPassword().equals(password);
 				}
 			});
+			
 			if (users.isEmpty()) {
 				System.out.println("Invalid credentials");
 				return new MenuNavigator(MenuNavigator.Status.CONTINUE);

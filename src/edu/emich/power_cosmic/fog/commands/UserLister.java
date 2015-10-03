@@ -18,7 +18,9 @@ public class UserLister extends Command {
 		super("users", "List users");
 	}
 	
-	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
 
 		System.out.println();
 		printList("Administrators", db.queryByExample(new Administrator()));

@@ -21,7 +21,9 @@ public class PostPoster extends Command {
 	}
 
 	@Override
-	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
 		
 		String forumTitle, content;
 		

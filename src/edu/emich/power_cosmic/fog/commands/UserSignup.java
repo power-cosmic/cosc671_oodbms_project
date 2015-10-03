@@ -24,7 +24,10 @@ public class UserSignup extends Command {
 	}
 	
 	@Override
-	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
+		
 		System.out.printf("Select user type (%s, %s, %s):\n",
 				ADMIN, DEVELOPER, PLAYER);
 		

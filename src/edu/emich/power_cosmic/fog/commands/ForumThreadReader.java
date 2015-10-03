@@ -19,7 +19,9 @@ public class ForumThreadReader extends Command {
 	}
 
 	@Override
-	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
 		
 		String forumTitle;
 		System.out.print("Forum title: ");

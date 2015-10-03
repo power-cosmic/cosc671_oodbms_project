@@ -27,16 +27,20 @@ public abstract class Menu {
 		return commands.add(command);
 	}
 	
-	public MenuNavigator doCommand(String commandName, Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(String commandName, 
+			Scanner keyboard, 
+			ObjectContainer db, 
+			String[] args) {
+		
 		for (Command command: commands) {
 			if (command.getName().equalsIgnoreCase(commandName)) {
-				return command.doCommand(keyboard, db);
+				return command.doCommand(keyboard, db, args);
 			}
 		}
 		
 		// if we got here the user didn't enter a real command
 		System.out.println("Invalid command; type 'help' for help");
-		return new MenuNavigator(MenuNavigator.Status.CONTINUE);
+		return MenuNavigator.CONTINUE;
 	}
 	
 	private class Exit extends Command {
@@ -46,7 +50,9 @@ public abstract class Menu {
 		}
 		
 		@Override
-		public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+		public MenuNavigator doCommand(Scanner keyboard, 
+				ObjectContainer db,
+				String[] args) {
 			return new MenuNavigator(MenuNavigator.Status.EXIT);
 		}	
 	}
@@ -58,7 +64,9 @@ public abstract class Menu {
 		}
 
 		@Override
-		public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+		public MenuNavigator doCommand(Scanner keyboard, 
+				ObjectContainer db,
+				String[] args) {
 			
 			for (Command command: commands) {
 				System.out.printf("%-12s : %s\n",

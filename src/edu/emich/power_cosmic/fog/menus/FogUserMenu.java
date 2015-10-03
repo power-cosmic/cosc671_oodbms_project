@@ -29,7 +29,10 @@ public class FogUserMenu extends Menu {
 		}
 
 		@Override
-		public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+		public MenuNavigator doCommand(Scanner keyboard, 
+				ObjectContainer db,
+				String[] args) {
+			
 			return new MenuNavigator(new ForumMenu(user));
 		}
 		

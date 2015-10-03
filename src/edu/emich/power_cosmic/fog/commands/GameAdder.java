@@ -18,7 +18,9 @@ public class GameAdder extends Command {
 	}
 	
 	@Override
-	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
 		
 		System.out.print("Enter title: ");
 		String title = keyboard.nextLine();

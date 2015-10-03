@@ -19,7 +19,10 @@ public class ForumThreadMaker extends Command {
 	}
 
 	@Override
-	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
+		
 		String title, content;
 		
 		System.out.print("Title: ");

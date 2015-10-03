@@ -16,7 +16,10 @@ public class ForumThreadLister extends Command {
 	}
 
 	@Override
-	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
+		
 		List<ForumThread> threads = db.query(new Predicate<ForumThread>() {
 			private static final long serialVersionUID = -6694387122072021104L;
 

@@ -16,7 +16,9 @@ public class GameLister extends Command {
 	}
 
 	@Override
-	public MenuNavigator doCommand(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
 		
 		List<Game> games = db.query(new Predicate<Game>() {
 			private static final long serialVersionUID = -6797553863285149881L;
