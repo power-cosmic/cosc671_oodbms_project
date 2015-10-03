@@ -1,5 +1,6 @@
 package edu.emich.power_cosmic.fog.application;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +13,9 @@ import edu.emich.power_cosmic.fog.commands.UserLister;
 import edu.emich.power_cosmic.fog.commands.UserSignup;
 import edu.emich.power_cosmic.fog.menus.Menu;
 import edu.emich.power_cosmic.fog.menus.MenuNavigator;
+import edu.emich.power_cosmic.fog.menus.UserMenu;
 import edu.emich.power_cosmic.fog.schema.FogUser;
+import edu.emich.power_cosmic.fog.schema.Player;
 
 public class DatabaseProject extends Menu {
 
@@ -25,7 +28,8 @@ public class DatabaseProject extends Menu {
 		Scanner keyboard = new Scanner(System.in);
 		
 		DatabaseProject mainMenu = new DatabaseProject();
-		Menu currentMenu = mainMenu;
+		LinkedList<Menu> menuStack = new LinkedList<Menu>();
+		menuStack.push(mainMenu);
 		
 		System.out.println("Welcome to fog");
 		System.out.println("Type 'help' for a list of commands");
@@ -36,11 +40,29 @@ public class DatabaseProject extends Menu {
 		while(running) {
 			System.out.print(OutputConstants.PROMPT);
 			String command = keyboard.nextLine();
-			menuStatus = currentMenu.doCommand(command, keyboard, db);
+			menuStatus = menuStack.peek().doCommand(command, keyboard, db);
 			
 			switch(menuStatus) {
 			case LOGIN:
-				System.out.println(mainMenu.user);
+				// login command should have altered user
+				if (mainMenu.user instanceof Player) {
+					menuStack.push(new UserMenu(mainMenu.user));
+				}
+				break;
+			case BACK:
+				menuStack.pop();
+				if (menuStack.isEmpty()) {
+					running = false;
+				} else if (menuStack.size() == 1){
+					mainMenu.user = null;
+				}
+				break;
+			case LOGOUT:
+				while (menuStack.size() > 1) {
+					menuStack.pop();
+					mainMenu.user = null;
+				}
+				System.out.println("Logged out successfully");
 				break;
 			case EXIT:
 				running = false;
@@ -53,7 +75,7 @@ public class DatabaseProject extends Menu {
 	}
 	
 	public DatabaseProject() {
-		super();
+		super(null);
 		
 		addCommand(new Login());
 		addCommand(new UserSignup());

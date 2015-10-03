@@ -7,12 +7,16 @@ import java.util.Scanner;
 import com.db4o.ObjectContainer;
 
 import edu.emich.power_cosmic.fog.commands.Command;
+import edu.emich.power_cosmic.fog.schema.FogUser;
 
 public abstract class Menu {
 
 	private List<Command> commands;
+	private FogUser user;
 	
-	public Menu() {
+	public Menu(FogUser user) {
+		this.user = user;
+		
 		commands = new ArrayList<>();
 		
 		addCommand(new Help());
@@ -62,6 +66,14 @@ public abstract class Menu {
 			}
 			return MenuNavigator.CONTINUE;
 		}
+	}
+
+	public FogUser getUser() {
+		return user;
+	}
+
+	public void setUser(FogUser user) {
+		this.user = user;
 	}
 	
 }
