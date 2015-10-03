@@ -10,7 +10,6 @@ import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.query.Predicate;
 
 import edu.emich.power_cosmic.fog.commands.Command;
-import edu.emich.power_cosmic.fog.commands.UserLister;
 import edu.emich.power_cosmic.fog.commands.UserSignup;
 import edu.emich.power_cosmic.fog.menus.AdministratorMenu;
 import edu.emich.power_cosmic.fog.menus.DeveloperMenu;
