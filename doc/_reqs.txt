@@ -1,0 +1,5 @@
+reqs
+1. member names and responsibilities
+2. Your choice of database and a short description
+3. Your choice of OODBMS, a link to its website, and why you chose it
+4. A complete UML model of the database application
