@@ -13,6 +13,7 @@ public abstract class FogUser {
 	public FogUser(String username, String password) {
 		this.username = username;
 		this.password = password;
+		dateJoined = new Date();
 	}
 
 	public String getUsername() {

@@ -1,5 +1,7 @@
 package edu.emich.power_cosmic.fog.schema;
 
+import java.util.Date;
+
 public class Post {
 
     private ForumThread forumThread;
@@ -7,6 +9,7 @@ public class Post {
     private FogUser destinationUser;
     private String content;
     private Post replyTo;
+    private Date timeStamp;
     
     public Post(FogUser poster, String content) {
         this.poster = poster;
@@ -16,6 +19,7 @@ public class Post {
     public Post(FogUser poster, String content, Post replyTo) {
         this(poster, content);
         this.replyTo = replyTo;
+        timeStamp = new Date();
     }
     
     public Post(FogUser poster, String content, FogUser destinationUser) {
@@ -50,5 +54,10 @@ public class Post {
     public Post getReplyTo() {
         return replyTo;
     }
+
+	public Date getTimeStamp() {
+		return timeStamp;
+	}
+    
     
 }
