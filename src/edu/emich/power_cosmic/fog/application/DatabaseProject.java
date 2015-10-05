@@ -42,8 +42,7 @@ public class DatabaseProject extends Menu {
 		menuStack.push(mainMenu);
 		
 		System.out.println("Welcome to fog");
-		System.out.println("Type 'help' for a list of commands");
-		System.out.println(OutputConstants.SEPARATOR);
+		OutputConstants.printTitle("Type 'help' for a list of commands");
 		
 		boolean running = true;
 		MenuNavigator menuStatus = null;

@@ -13,7 +13,7 @@ public class GameAdder extends Command {
 	private Developer developer;
 	
 	public GameAdder(Developer developer) {
-		super("add game", "Add a game");
+		super("addgame", "Add a game");
 		this.developer = developer;
 	}
 	

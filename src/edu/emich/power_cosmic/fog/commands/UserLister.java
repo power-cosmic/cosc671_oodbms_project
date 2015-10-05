@@ -31,8 +31,7 @@ public class UserLister extends Command {
 	}
 	
 	private void printList(String title, List<FogUser> users) {
-		System.out.println(title);
-		System.out.println(OutputConstants.SEPARATOR);
+		OutputConstants.printTitle(title);
 		for (FogUser user: users) {
 			System.out.println("  " + user.getUsername());
 		}
