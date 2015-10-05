@@ -1,4 +1,4 @@
-package edu.emich.power_cosmic.fog.application;
+package edu.emich.power_cosmic.fog.commands;
 
 import java.util.List;
 import java.util.Scanner;
@@ -6,17 +6,20 @@ import java.util.Scanner;
 import com.db4o.ObjectContainer;
 import com.db4o.query.Predicate;
 
+import edu.emich.power_cosmic.fog.menus.MenuNavigator;
 import edu.emich.power_cosmic.fog.schema.Game;
 
-public class GameLister implements FogQuery {
+public class GameLister extends Command {
 
-	@Override
-	public String getName() {
-		return "List games";
+	public GameLister() {
+		super("games", "List games");
 	}
 
 	@Override
-	public void runQuery(Scanner keyboard, ObjectContainer db) {
+	public MenuNavigator doCommand(Scanner keyboard, 
+			ObjectContainer db,
+			String[] args) {
+		
 		List<Game> games = db.query(new Predicate<Game>() {
 			private static final long serialVersionUID = -6797553863285149881L;
 
@@ -28,9 +31,11 @@ public class GameLister implements FogQuery {
 		});
 		
 		for (Game game: games) {
-			System.out.println(game.getTitle());
+			System.out.println(game.getTitle()
+					+ ": " + game.getDescription());
 		}
 		
+		return MenuNavigator.CONTINUE;
 	}
 
 }

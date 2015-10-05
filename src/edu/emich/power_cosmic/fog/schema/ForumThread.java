@@ -1,6 +1,7 @@
 package edu.emich.power_cosmic.fog.schema;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ForumThread {
@@ -28,8 +29,12 @@ public class ForumThread {
         this.title = title;
     }
     
-    public void addPost(Post post) {
-        posts.add(post);
+    public Iterator<Post> getPosts() {
+    	return posts.iterator();
+    }
+    
+    public boolean addPost(Post post) {
+        return posts.add(post);
     }
     
     public boolean removePost(Post post) {

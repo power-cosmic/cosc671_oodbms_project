@@ -51,5 +51,9 @@ local.properties
 # TeXlipse plugin
 .texlipse
 
-#generated .db files
+#java
+/bin/
+
+# db stuff
 *.db
+*.db4

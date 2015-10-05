@@ -6,6 +6,10 @@ public class Administrator extends FogUser {
     private String lastName;
     private long employeeId;
     
+    public Administrator() {
+    	this(null, null);
+    }
+    
     public Administrator(String username, String password) {
         super(username, password);
     }

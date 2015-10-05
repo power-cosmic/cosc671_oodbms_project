@@ -19,6 +19,10 @@ public class Player extends FogUser {
     private List<TrophyCard> trophyCards;
     private Map<Game, PlayHistory> playHistory;
 
+    public Player() {
+    	this(null, null);
+    }
+    
     public Player(String username, String password) {
         super(username, password);
         games = new TreeSet<>();
