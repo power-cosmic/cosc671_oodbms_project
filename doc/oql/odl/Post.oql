@@ -1,0 +1,12 @@
+class Post (extent Posts)
+{ attribute     FogUser     poster
+, attribute     string      content
+, attribute     Date        timestamp
+, attribute     Post        replyTo
+
+, relationship  ForumThread root      inverse ForumThread::root
+, relationship  list<Post>  replies   inverse Post::replyTo
+
+,               boolean     reply(in Post newPost)
+
+}

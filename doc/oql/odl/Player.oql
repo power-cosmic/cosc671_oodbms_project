@@ -1,0 +1,17 @@
+class Player: FogUser (extent Players)
+{ attribute     string              firstName
+, attribute     string              lastName
+, attribute     set<Game>           owned
+, attribute     set<Game>           wishlist
+
+, relationship  list<Card>          cards               inverse Card::owner
+, relationship  BillingInformation  billingInformation  inverse BillingInformation::player
+, relationship  set<Player>         friendsWith         inverse Player::friendsWith
+, relationship  list<PlayHistory>   playHistories       inverse PlayHistory::player
+
+,               Player              removeFriend(in Player fromFriends)
+,               Game                removeFromWishlist(in Game fromWishlist)
+,               void                addCard(in Card newCard)
+,               void                giveCard(in Card oldCard, in Player target)
+
+}

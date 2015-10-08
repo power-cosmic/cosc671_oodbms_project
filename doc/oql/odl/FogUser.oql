@@ -1,0 +1,8 @@
+interface FogUser (extent FogUsers)
+{ attribute     string  username
+, attribute     string  password
+, attribute     string  displayName
+, attribute     string  email
+, attribute     Date    dateJoined
+
+}

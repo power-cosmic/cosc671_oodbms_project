@@ -1,0 +1,10 @@
+class BillingInformation (extent BillingInfomations)
+{ attribute     string  city
+, attribute     string  state
+, attribute     int     zipCode
+, attribute     string  creditCard
+, attribute     int     ccv
+, attribute     string  nameOnCard
+, attribute     Player  player
+
+}

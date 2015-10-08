@@ -1,0 +1,8 @@
+class Card (extent Cards)
+{ attribute     string  title
+, attribute     int     manaCost
+, attribute     int     hp
+, attribute     int     attack
+, attribute     Player  owner
+
+}

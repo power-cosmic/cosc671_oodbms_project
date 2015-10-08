@@ -1,0 +1,10 @@
+class PlayHistory (extent PlayHistories)
+{ attribute     float       timePlayed
+, attribute     list<Card>  cardsEarned
+, attribute     Game        game
+
+, relationship  Player      player      inverse Player::playHistories
+
+,               void        addTime(in float moreTime)
+
+}

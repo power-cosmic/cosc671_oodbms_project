@@ -1,0 +1,6 @@
+class Administrator: FogUser (extent Administrators)
+{ attribute     string    firstName
+, attribute     string    lastName
+, attribute     long      employeeId
+
+}

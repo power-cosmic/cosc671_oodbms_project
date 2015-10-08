@@ -1,0 +1,10 @@
+class Game (extent Games)
+{ attribute     string      title
+, attribute     string      description
+, attribute     set<string> genres
+
+, relationship  Developer   developer   inverse Developer::games
+
+,               void        play()
+
+}

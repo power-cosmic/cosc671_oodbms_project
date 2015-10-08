@@ -1,0 +1,10 @@
+class ForumThread (extent ForumThreads)
+{ attribute     string      title
+, attribute     Post        firstPost
+
+, relationship  list<Post>  posts     inverse Post::root
+
+,               boolean     removePost(in Post oldPost)
+,               boolean     addPost(in Post newPost)
+
+}

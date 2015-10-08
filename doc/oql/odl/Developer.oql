@@ -1,0 +1,6 @@
+class Developer: FogUser (extent Developers)
+{ attribute     string      name
+
+, relationship  set<Games>  games inverse Game::developer
+
+}
