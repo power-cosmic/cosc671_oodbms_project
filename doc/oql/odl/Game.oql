@@ -6,5 +6,6 @@ class Game (extent Games)
 , relationship  Developer   developer   inverse Developer::games
 
 ,               void        play()
+,               int         getRating()
 
 }
