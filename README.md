@@ -19,12 +19,29 @@ The end.
 ## Usage
 
 ```sql
-select g.name from Game g where g.getDeveloperName() == 'Power Cosmic';
-select p from Post p where p.rootPost == null;
-select count(g.name) from Game g where g.getRating() >= 4 group by name: g.getDeveloperName()
+select g.name
+from Games g
+where g.developer.name = 'Power Cosmic';
 
+max(select c.attack
+    from Cards c
+    where c.owner.username = "egurnee");
 
+select g.name
+from Games g
+where count(g.genres) > 2);
 
+select g.title, g.discription
+from Games g;
+
+select h.player.username
+from h in PlayHistories
+where h.game.developer = 'Power Cosmic';
+
+select p.poster.username
+where p in (select f.posts
+            from f in ForumThreads
+            where f.title = 'Start Here');
 ```
 
 ## License
