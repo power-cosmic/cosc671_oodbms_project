@@ -1,5 +1,6 @@
 package edu.emich.power_cosmic.fog.schema;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayHistory {
@@ -7,6 +8,10 @@ public class PlayHistory {
 	private Game game;
 	private double hoursPlayed;
 	private List<TrophyCard> cardsEarned;
+	
+	public PlayHistory() {
+		this.hoursPlayed = 0;
+	}
 
 	public Game getGame() {
 		return game;
