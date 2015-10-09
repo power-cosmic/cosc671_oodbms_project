@@ -23,9 +23,9 @@ public class UserLister extends Command {
 			String[] args) {
 
 		System.out.println();
-		printList("Administrators", db.queryByExample(new Administrator()));
-		printList("Developers", db.queryByExample(new Developer()));
-		printList("Users", db.queryByExample(new Player()));
+		printList("Administrators", db.queryByExample(Administrator.class));
+		printList("Developers", db.queryByExample(Developer.class));
+		printList("Users", db.queryByExample(Player.class));
 		
 		return MenuNavigator.CONTINUE;
 	}
