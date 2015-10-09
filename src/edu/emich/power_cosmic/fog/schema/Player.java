@@ -123,5 +123,9 @@ public class Player extends FogUser {
     public void setPlayHistory(Map<Game, PlayHistory> playHistory) {
         this.playHistory = playHistory;
     }
+    
+    public void addPlayHistory(Game game, PlayHistory playHistory) {
+    	this.playHistory.put(game, playHistory);
+    }
 
 }
