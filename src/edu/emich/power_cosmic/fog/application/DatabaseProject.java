@@ -35,6 +35,7 @@ public class DatabaseProject extends Menu {
 		
 		ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
 		
+//		BasicInstance.init(db);
 		Scanner keyboard = new Scanner(System.in);
 		
 		DatabaseProject mainMenu = new DatabaseProject();
