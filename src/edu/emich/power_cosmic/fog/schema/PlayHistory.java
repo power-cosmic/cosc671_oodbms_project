@@ -11,6 +11,7 @@ public class PlayHistory {
 	
 	public PlayHistory() {
 		this.hoursPlayed = 0;
+		this.cardsEarned = new ArrayList<>();
 	}
 
 	public Game getGame() {
@@ -35,6 +36,10 @@ public class PlayHistory {
 
 	public void setCardsEarned(List<TrophyCard> cardsEarned) {
 		this.cardsEarned = cardsEarned;
+	}
+	
+	public void addCardsEarned(TrophyCard cardEarned) {
+		this.cardsEarned.add(cardEarned);
 	}
 
 }
