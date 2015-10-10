@@ -45,6 +45,7 @@ public class BasicInstance {
 
 				final PlayHistory playHistory = new PlayHistory();
 				playHistory.setGame(game);
+				playHistory.setPlayer(player);
 
 				final TrophyCard trophyCard = new TrophyCard();
 				trophyCard.setGameFrom(game);
