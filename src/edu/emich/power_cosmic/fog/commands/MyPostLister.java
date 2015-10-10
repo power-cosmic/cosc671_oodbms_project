@@ -27,7 +27,7 @@ public class MyPostLister extends Command {
 
 			@Override
 			public boolean match(Post post) {
-				return post.getPoster() == user;
+				return post.getPoster().equals(user);
 			}
 		});
 		

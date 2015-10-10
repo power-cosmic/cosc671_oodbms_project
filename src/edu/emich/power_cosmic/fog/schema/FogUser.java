@@ -8,6 +8,52 @@ public abstract class FogUser {
 	private String password;
 	private String displayName;
 	private String email;
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+					+ ((this.email == null) ? 0 : this.email.hashCode());
+		result = prime * result
+					+ ((this.password == null) ? 0 : this.password.hashCode());
+		result = prime * result
+					+ ((this.username == null) ? 0 : this.username.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FogUser other = (FogUser) obj;
+		if (this.email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!this.email.equals(other.email))
+			return false;
+		if (this.password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!this.password.equals(other.password))
+			return false;
+		if (this.username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!this.username.equals(other.username))
+			return false;
+		return true;
+	}
+
 	private Date dateJoined;
 
 	public FogUser(String username, String password) {

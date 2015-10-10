@@ -27,14 +27,21 @@ public class BasicInstance {
 			billingInformation.setCcv(i);
 			player.setBillingInformation(billingInformation);
 
-			final ForumThread forumThread = new ForumThread(
-					new Post(administrator, "content" + i), "ForumTopic: " + i);
+			final Post initialPost = new Post(administrator, "content" + i);
+			final ForumThread forumThread =
+					new ForumThread(initialPost, "ForumTopic: " + i);
+			initialPost.setForumThread(forumThread);
 			for (int j = 0; j < numObjs; j++) {
-				forumThread.addPost(new Post(player, "content " + j));
+				final Post post = new Post(player, "content " + j);
+				post.setForumThread(forumThread);
+
+				forumThread.addPost(post);
 
 				final Game game = new Game();
 				game.setDeveloper(developer);
-				game.setTitle("game: " + j);
+				game.setTitle("game " + j);
+				game.setDescription(
+					"here is the description " + (i * j) + (i + j));
 
 				final PlayHistory playHistory = new PlayHistory();
 				playHistory.setGame(game);
@@ -50,13 +57,15 @@ public class BasicInstance {
 				db.store(trophyCard);
 				db.store(playHistory);
 				db.store(game);
+				db.store(post);
 			}
+
 			db.store(forumThread);
+			db.store(initialPost);
 			db.store(billingInformation);
 			db.store(player);
 			db.store(developer);
 			db.store(administrator);
-
 		}
 	}
 
