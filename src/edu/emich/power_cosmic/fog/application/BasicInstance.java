@@ -20,6 +20,7 @@ public class BasicInstance {
 			final Administrator administrator =
 					new Administrator("admin" + i, "admin" + i);
 			final Developer developer = new Developer("dev" + i, "dev" + i);
+			developer.setName("devName" + i);
 			final Player player = new Player("player" + i, "player" + i);
 
 			final BillingInformation billingInformation =
