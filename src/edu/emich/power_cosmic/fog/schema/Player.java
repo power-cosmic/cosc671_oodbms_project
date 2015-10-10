@@ -126,6 +126,8 @@ public class Player extends FogUser {
     
     public void addPlayHistory(Game game, PlayHistory playHistory) {
     	this.playHistory.put(game, playHistory);
+    	playHistory.setPlayer(this);
+    	this.trophyCards.addAll(playHistory.getCardsEarned());
     }
 
 }
