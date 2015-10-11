@@ -61,7 +61,13 @@ public class Player extends FogUser {
     }
 
     public boolean addGame(Game game) {
-        return games.add(game);
+        if (!games.add(game)) {
+        	return false;
+        }
+        if (!playHistory.containsKey(game)) {
+        	playHistory.put(game, new PlayHistory());
+        }
+        return true;
     }
     
     public boolean giveGame(Game game, Player otherPlayer) {
