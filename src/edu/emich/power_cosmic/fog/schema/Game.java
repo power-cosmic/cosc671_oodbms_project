@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Game {
+public class Game implements Comparable<Game> {
 	
 	private Developer developer;
 	private String title;
@@ -45,6 +45,14 @@ public class Game {
 
 	public void setGenres(Set<String> genres) {
 		this.genres = genres;
+	}
+
+	@Override
+	public int compareTo(Game o) {
+		if (o == null) {
+			return 1;
+		}
+		return this.title.compareTo(o.title);
 	}
 	
 }
