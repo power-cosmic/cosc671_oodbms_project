@@ -14,6 +14,8 @@ public class ForumThread {
     public ForumThread(Post initialPost, String title) {
         this.initialPost = initialPost;
         this.title = title;
+        
+        initialPost.setForumThread(this);
         posts = new ArrayList<>();
     }
     
