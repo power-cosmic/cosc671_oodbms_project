@@ -172,6 +172,7 @@ public class DatabaseProject
 				toReturn = "help";
 				break;
 			case "in":
+			case "l":
 				toReturn = "login";
 				break;
 			case "out":
@@ -179,6 +180,9 @@ public class DatabaseProject
 				break;
 			case "x":
 				toReturn = "exit";
+				break;
+			case "b":
+				toReturn = "back";
 				break;
 		}
 		return toReturn;

@@ -19,9 +19,11 @@ public class BasicInstance {
 		for (int i = 0; i < numObjs; i++) {
 			final Administrator administrator =
 					new Administrator("admin" + i, "admin" + i);
+			administrator.setDisplayName("AdminCalled" + i);
 			final Developer developer = new Developer("dev" + i, "dev" + i);
 			developer.setName("devName" + i);
 			final Player player = new Player("player" + i, "player" + i);
+			player.setDisplayName("PlayerCalled" + i);
 
 			final BillingInformation billingInformation =
 					new BillingInformation();
