@@ -31,7 +31,7 @@ select g.name
 from Games g
 where count(g.genres) > 2);
 
-select g.title, g.discription
+select g.title, g.description
 from Games g;
 
 select h.player.username
