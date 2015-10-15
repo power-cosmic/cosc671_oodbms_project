@@ -39,9 +39,14 @@ from h in PlayHistories
 where h.game.developer = 'Power Cosmic';
 
 select p.poster.username
-where p in (select f.posts
+from p in ( select f.posts
             from f in ForumThreads
             where f.title = 'Start Here');
+
+select ph.player.username
+from ph in PlayHistories
+where ph.name.title = 'Fonkey Mong';
+
 ```
 
 ## License
